@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mbtiles2img_dialog_base.ui'
 #
-# Created: Sun Dec 14 11:21:46 2014
+# Created: Sun Dec 14 22:00:04 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -44,6 +44,8 @@ class Ui_MBTiles2imgDialogBase(object):
         self.labelPathMBTiles = QtGui.QLabel(self.widget)
         self.labelPathMBTiles.setFrameShape(QtGui.QFrame.StyledPanel)
         self.labelPathMBTiles.setFrameShadow(QtGui.QFrame.Plain)
+        self.labelPathMBTiles.setScaledContents(True)
+        self.labelPathMBTiles.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByKeyboard|QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextBrowserInteraction|QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
         self.labelPathMBTiles.setObjectName(_fromUtf8("labelPathMBTiles"))
         self.verticalLayout.addWidget(self.labelPathMBTiles)
         self.selectDestFolderButton = QtGui.QPushButton(self.widget)
@@ -51,6 +53,9 @@ class Ui_MBTiles2imgDialogBase(object):
         self.verticalLayout.addWidget(self.selectDestFolderButton)
         self.labelPathDestFolder = QtGui.QLabel(self.widget)
         self.labelPathDestFolder.setFrameShape(QtGui.QFrame.StyledPanel)
+        self.labelPathDestFolder.setFrameShadow(QtGui.QFrame.Plain)
+        self.labelPathDestFolder.setScaledContents(True)
+        self.labelPathDestFolder.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByKeyboard|QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextBrowserInteraction|QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
         self.labelPathDestFolder.setObjectName(_fromUtf8("labelPathDestFolder"))
         self.verticalLayout.addWidget(self.labelPathDestFolder)
 

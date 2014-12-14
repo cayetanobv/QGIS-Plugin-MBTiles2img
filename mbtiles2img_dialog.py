@@ -45,3 +45,9 @@ class MBTiles2imgDialog(QtGui.QDialog, FORM_CLASS):
     
     def setLabelPathDestFolder(self, output):
         self.labelPathDestFolder.setText(output)
+    
+    def getPathMBTiles(self):
+        return self.labelPathMBTiles.text()
+    
+    def getPathDestFolder(self):
+        return self.labelPathDestFolder.text()

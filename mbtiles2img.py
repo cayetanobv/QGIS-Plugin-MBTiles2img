@@ -24,11 +24,13 @@
 # Import the PyQt and QGIS libraries
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
+from qgis.gui import *
 # Initialize Qt resources from file resources.py
 import resources_rc
 # Import the code for the dialog
 from mbtiles2img_dialog import MBTiles2imgDialog
 import os.path
+from MBTilesextractor_lib.lib.mbtilesextractor import MBTilesExtractor
 
 
 class MBTiles2img:
@@ -65,7 +67,7 @@ class MBTiles2img:
 
         # Declare instance attributes
         self.actions = []
-        self.menu = self.tr(u'&MBTiles images export')
+        self.menu = self.tr(u'&MBTiles images extract')
         # TODO: We are going to let the user set this up in a future iteration
         self.toolbar = self.iface.addToolBar(u'MBTiles2img')
         self.toolbar.setObjectName(u'MBTiles2img')
@@ -165,7 +167,7 @@ class MBTiles2img:
         icon_path = ':/plugins/MBTiles2img/icon.png'
         self.add_action(
             icon_path,
-            text=self.tr(u'MBTiles images export'),
+            text=self.tr(u'MBTiles images extract'),
             callback=self.run,
             parent=self.iface.mainWindow())
 
@@ -177,7 +179,7 @@ class MBTiles2img:
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
             self.iface.removePluginMenu(
-                self.tr(u'&MBTiles images export'),
+                self.tr(u'&MBTiles images extract'),
                 action)
             self.iface.removeToolBarIcon(action)
 
@@ -190,27 +192,55 @@ class MBTiles2img:
         result = self.dlg.exec_()
         # See if OK was pressed
         if result:
-            # Do something useful here - delete the line containing pass and
-            # substitute with your code.
-            pass
+            # run MBTiles image extraction process
+            input_file = self.dlg.getPathMBTiles()
+            dest_folder = self.dlg.getPathDestFolder()
+            self.runExtraction(input_file, dest_folder)
+            
+            
     
     def loadMBTilesFile(self):
         #Load MBTiles file
         
         # open file dialog to load MBTiles file
         start_dir = '/home'
+        fl_types = "MBTiles files (*.mbtiles)"
         file_path = QFileDialog.getOpenFileName(self.iface.mainWindow(), 
-                                                'Open MBTiles file', start_dir)
+                                                'Open MBTiles file', start_dir, fl_types)
         
-        self.dlg.setLabelPathMBTiles(file_path)
+        if file_path:
+            self.dlg.setLabelPathMBTiles(file_path)
+        else:
+            self.dlg.setLabelPathDestFolder("MBTiles to extract...")
     
     def setDestFolder(self):
         #Set Destination folder to save exported images
         
         # open file dialog to select folder
         start_dir = '/home'
-        file_path = QFileDialog.getExistingDirectory(self.iface.mainWindow(), 
+        folder_path = QFileDialog.getExistingDirectory(self.iface.mainWindow(), 
                                                      'Select destination folder to save exported images', 
                                                      start_dir)
         
-        self.dlg.setLabelPathDestFolder(file_path)
+        if folder_path:
+            self.dlg.setLabelPathDestFolder(folder_path)
+        else:
+            self.dlg.setLabelPathDestFolder("Destination folder...")
+    
+    def runExtraction(self, input_file, dest_folder):
+        # Run MBTiles images extraction
+        
+        try:
+            ex_mbt = MBTilesExtractor(input_file, dirname=dest_folder, overwrite=True)
+            result = ex_mbt.extractTiles()
+            msg_type= "Info"
+            level = QgsMessageBar.INFO
+            if 'Done!' not in result:
+                msg_type= "Warning"
+                level = QgsMessageBar.WARNING
+            self.iface.messageBar().pushMessage(msg_type, result, level=level)
+    
+        except Exception as e:
+            result = 'Error: %s - %s' % (e.message, e.args)
+            self.iface.messageBar().pushMessage("Error", result, level=QgsMessageBar.CRITICAL)
+    
