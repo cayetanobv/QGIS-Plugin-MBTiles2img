@@ -7,7 +7,6 @@
  of individual image tile files.
                               -------------------
         begin                : 2014-12-09
-        git sha              : $Format:%H$
         copyright            : (C) 2014 by Cayetano Benavent
         email                : cayetanobv@gmail.com
  ***************************************************************************/
@@ -25,10 +24,14 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from qgis.gui import *
+
 # Initialize Qt resources from file resources.py
 import resources_rc
+
 # Import the code for the dialog
 from mbtiles2img_dialog import MBTiles2imgDialog
+
+# Other imports
 import os.path
 from MBTilesextractor_lib.lib.mbtilesextractor import MBTilesExtractor
 

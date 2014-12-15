@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mbtiles2img_dialog_base.ui'
 #
-# Created: Sun Dec 14 22:00:04 2014
+# Created: Mon Dec 15 01:21:13 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,38 +26,39 @@ except AttributeError:
 class Ui_MBTiles2imgDialogBase(object):
     def setupUi(self, MBTiles2imgDialogBase):
         MBTiles2imgDialogBase.setObjectName(_fromUtf8("MBTiles2imgDialogBase"))
-        MBTiles2imgDialogBase.resize(264, 222)
-        self.button_box = QtGui.QDialogButtonBox(MBTiles2imgDialogBase)
-        self.button_box.setGeometry(QtCore.QRect(30, 170, 221, 32))
-        self.button_box.setOrientation(QtCore.Qt.Horizontal)
-        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
-        self.button_box.setObjectName(_fromUtf8("button_box"))
-        self.widget = QtGui.QWidget(MBTiles2imgDialogBase)
-        self.widget.setGeometry(QtCore.QRect(10, 20, 241, 141))
-        self.widget.setObjectName(_fromUtf8("widget"))
-        self.verticalLayout = QtGui.QVBoxLayout(self.widget)
-        self.verticalLayout.setMargin(0)
+        MBTiles2imgDialogBase.resize(322, 210)
+        MBTiles2imgDialogBase.setMinimumSize(QtCore.QSize(300, 210))
+        MBTiles2imgDialogBase.setMaximumSize(QtCore.QSize(800, 211))
+        self.verticalLayout = QtGui.QVBoxLayout(MBTiles2imgDialogBase)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-        self.loadFileButton = QtGui.QPushButton(self.widget)
+        self.gridLayout = QtGui.QGridLayout()
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
+        self.selectDestFolderButton = QtGui.QPushButton(MBTiles2imgDialogBase)
+        self.selectDestFolderButton.setObjectName(_fromUtf8("selectDestFolderButton"))
+        self.gridLayout.addWidget(self.selectDestFolderButton, 2, 0, 1, 1)
+        self.loadFileButton = QtGui.QPushButton(MBTiles2imgDialogBase)
         self.loadFileButton.setObjectName(_fromUtf8("loadFileButton"))
-        self.verticalLayout.addWidget(self.loadFileButton)
-        self.labelPathMBTiles = QtGui.QLabel(self.widget)
+        self.gridLayout.addWidget(self.loadFileButton, 0, 0, 1, 1)
+        self.labelPathMBTiles = QtGui.QLabel(MBTiles2imgDialogBase)
         self.labelPathMBTiles.setFrameShape(QtGui.QFrame.StyledPanel)
-        self.labelPathMBTiles.setFrameShadow(QtGui.QFrame.Plain)
+        self.labelPathMBTiles.setFrameShadow(QtGui.QFrame.Raised)
         self.labelPathMBTiles.setScaledContents(True)
         self.labelPathMBTiles.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByKeyboard|QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextBrowserInteraction|QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
         self.labelPathMBTiles.setObjectName(_fromUtf8("labelPathMBTiles"))
-        self.verticalLayout.addWidget(self.labelPathMBTiles)
-        self.selectDestFolderButton = QtGui.QPushButton(self.widget)
-        self.selectDestFolderButton.setObjectName(_fromUtf8("selectDestFolderButton"))
-        self.verticalLayout.addWidget(self.selectDestFolderButton)
-        self.labelPathDestFolder = QtGui.QLabel(self.widget)
+        self.gridLayout.addWidget(self.labelPathMBTiles, 1, 0, 1, 1)
+        self.labelPathDestFolder = QtGui.QLabel(MBTiles2imgDialogBase)
         self.labelPathDestFolder.setFrameShape(QtGui.QFrame.StyledPanel)
-        self.labelPathDestFolder.setFrameShadow(QtGui.QFrame.Plain)
+        self.labelPathDestFolder.setFrameShadow(QtGui.QFrame.Raised)
         self.labelPathDestFolder.setScaledContents(True)
         self.labelPathDestFolder.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByKeyboard|QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextBrowserInteraction|QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
         self.labelPathDestFolder.setObjectName(_fromUtf8("labelPathDestFolder"))
-        self.verticalLayout.addWidget(self.labelPathDestFolder)
+        self.gridLayout.addWidget(self.labelPathDestFolder, 3, 0, 1, 1)
+        self.verticalLayout.addLayout(self.gridLayout)
+        self.button_box = QtGui.QDialogButtonBox(MBTiles2imgDialogBase)
+        self.button_box.setOrientation(QtCore.Qt.Horizontal)
+        self.button_box.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
+        self.button_box.setObjectName(_fromUtf8("button_box"))
+        self.verticalLayout.addWidget(self.button_box)
 
         self.retranslateUi(MBTiles2imgDialogBase)
         QtCore.QObject.connect(self.button_box, QtCore.SIGNAL(_fromUtf8("accepted()")), MBTiles2imgDialogBase.accept)
@@ -65,9 +66,9 @@ class Ui_MBTiles2imgDialogBase(object):
         QtCore.QMetaObject.connectSlotsByName(MBTiles2imgDialogBase)
 
     def retranslateUi(self, MBTiles2imgDialogBase):
-        MBTiles2imgDialogBase.setWindowTitle(_translate("MBTiles2imgDialogBase", "MBTiles images export", None))
+        MBTiles2imgDialogBase.setWindowTitle(_translate("MBTiles2imgDialogBase", "MBTiles images extract", None))
+        self.selectDestFolderButton.setText(_translate("MBTiles2imgDialogBase", "Select folder to save images", None))
         self.loadFileButton.setText(_translate("MBTiles2imgDialogBase", "Load MBTiles file", None))
         self.labelPathMBTiles.setText(_translate("MBTiles2imgDialogBase", "MBTiles to extract...", None))
-        self.selectDestFolderButton.setText(_translate("MBTiles2imgDialogBase", "Select folder to save images", None))
         self.labelPathDestFolder.setText(_translate("MBTiles2imgDialogBase", "Destination folder...", None))
 
