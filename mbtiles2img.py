@@ -2,8 +2,10 @@
 """
 /***************************************************************************
  MBTiles2img
-                                 A QGIS plugin
- This plugin takes an mbtiles file and split it apart into a folder hierarchy 
+ 
+ A QGIS plugin
+ 
+This plugin takes an mbtiles file and split it apart into a folder hierarchy 
  of individual image tile files.
                               -------------------
         begin                : 2014-12-09
@@ -66,7 +68,7 @@ class MBTiles2img:
                 QCoreApplication.installTranslator(self.translator)
 
         # Create the dialog (after translation) and keep reference
-        self.dlg = MBTiles2imgDialog()
+        self.dlg = MBTiles2imgDialog(parent=self.iface.mainWindow())
 
         # Declare instance attributes
         self.actions = []
@@ -177,6 +179,8 @@ class MBTiles2img:
         # Connecting actions and functions (signals and slots)
         QObject.connect(self.dlg.loadFileButton, SIGNAL("clicked()"), self.loadMBTilesFile)
         QObject.connect(self.dlg.selectDestFolderButton, SIGNAL("clicked()"), self.setDestFolder)
+        QObject.connect(self.dlg.runExtractionButton, SIGNAL("clicked()"), self.runTileExtraction)
+        QObject.connect(self.dlg.helpButton, SIGNAL("clicked()"), self.getHelp)
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
@@ -188,36 +192,49 @@ class MBTiles2img:
 
 
     def run(self):
-        """Run method that performs all the real work"""
-        # show the dialog
+        #show the dialog
         self.dlg.show()
-        # Run the dialog event loop
-        result = self.dlg.exec_()
-        # See if OK was pressed
-        if result:
-            # run MBTiles image extraction process
-            input_file = self.dlg.getPathMBTiles()
-            dest_folder = self.dlg.getPathDestFolder()
-            self.runExtraction(input_file, dest_folder)
             
-            
-    
+    def runTileExtraction(self):
+        """
+        Run tiles extraction from MBTiles file
+        """
+        
+        input_file = self.dlg.getPathMBTiles()
+        dest_folder = self.dlg.getPathDestFolder()
+        res = self.tileExtractor(input_file, dest_folder)
+        
+        if res == 1:
+            self.dlg.clearLabelPathMBTiles()
+            self.dlg.clearLabelPathDestFolder()
+            self.dlg.setLabelPathDestFolder("Destination folder...")
+            self.dlg.setLabelPathMBTiles("MBTiles to extract...")
+        
     def loadMBTilesFile(self):
-        #Load MBTiles file
+        """
+        Load MBTiles file
+        """
+        
+        self.dlg.progressBar.setValue(0)
         
         # open file dialog to load MBTiles file
         start_dir = '/home'
         fl_types = "MBTiles files (*.mbtiles)"
         file_path = QFileDialog.getOpenFileName(self.iface.mainWindow(), 
-                                                'Open MBTiles file', start_dir, fl_types)
+                                                'Open MBTiles file', 
+                                                start_dir, fl_types)
         
         if file_path:
             self.dlg.setLabelPathMBTiles(file_path)
         else:
-            self.dlg.setLabelPathDestFolder("MBTiles to extract...")
+            self.dlg.setLabelPathMBTiles("MBTiles to extract...")
     
     def setDestFolder(self):
-        #Set Destination folder to save exported images
+        """
+        Set Destination folder to save exported images
+        """
+        
+        self.dlg.progressBar.setValue(0)
         
         # open file dialog to select folder
         start_dir = '/home'
@@ -230,20 +247,54 @@ class MBTiles2img:
         else:
             self.dlg.setLabelPathDestFolder("Destination folder...")
     
-    def runExtraction(self, input_file, dest_folder):
-        # Run MBTiles images extraction
+    def tileExtractor(self, input_file, dest_folder):
+        """
+        MBTiles images extraction method
+        
+        This method uses MBTilesextractor library to do the work
+        
+        """
         
         try:
             ex_mbt = MBTilesExtractor(input_file, dirname=dest_folder, overwrite=True)
+            self.dlg.progressBar.setValue(10)
             result = ex_mbt.extractTiles()
             msg_type= "Info"
             level = QgsMessageBar.INFO
+            progress_value  = 100
+            
             if 'Done!' not in result:
                 msg_type= "Warning"
                 level = QgsMessageBar.WARNING
+                progress_value = 0
+                res = 0
+            else:
+                res = 1
+                
             self.iface.messageBar().pushMessage(msg_type, result, level=level)
+            self.dlg.progressBar.setValue(progress_value)
+            
+            return res
     
         except Exception as e:
             result = 'Error: %s - %s' % (e.message, e.args)
             self.iface.messageBar().pushMessage("Error", result, level=QgsMessageBar.CRITICAL)
+            self.dlg.progressBar.setValue(0)
     
+    def getHelp(self):
+        """
+        Show help to users
+        """
+        
+        QMessageBox.information(self.iface.mainWindow(),"Help", 
+            """
+            1) Select MBTiles to extract. 
+            
+            2) Select destination folder to 
+            save exported images.
+            
+            3) Push button "Run tile extraction".
+            
+            Developed by Cayetano Benavent 2014.
+            
+            """)

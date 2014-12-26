@@ -47,3 +47,9 @@ class MBTiles2imgDialog(QtGui.QDialog, FORM_CLASS):
     
     def getPathDestFolder(self):
         return self.labelPathDestFolder.text()
+    
+    def clearLabelPathMBTiles(self):
+        self.labelPathMBTiles.clear()
+    
+    def clearLabelPathDestFolder(self):
+        self.labelPathDestFolder.clear()
