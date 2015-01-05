@@ -6,7 +6,7 @@ This plugin can be very useful for debugging processes.
 
 You can find the plugin in QGIS Plugin Repository:
 
-http://plugins.qgis.org/plugins/searchEpsgCRS/
+https://plugins.qgis.org/plugins/MBTiles2img/
 
 To install it you can use the QGIS plugin manager from the Plugins menu.
 
