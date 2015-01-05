@@ -4,6 +4,12 @@
 With this QGIS plugin you can take an MBTiles file and extract all the tiles as images to a local folder.
 This plugin can be very useful for debugging processes.
 
+You can find the plugin in QGIS Plugin Repository:
+
+http://plugins.qgis.org/plugins/searchEpsgCRS/
+
+To install it you can use the QGIS plugin manager from the Plugins menu.
+
 Compliant with MBTiles stable specification (1.1) and previous (1.0):
 
 https://github.com/mapbox/mbtiles-spec
