@@ -10,9 +10,10 @@
 name=MBTiles images extract
 qgisMinimumVersion=2.0
 description=With this QGIS plugin you can take an MBTiles file and extract all the tiles as images to a local folder. This plugin can be very useful for debugging processes.
-version=0.1
+about=With this QGIS plugin you can take an MBTiles file and extract all the tiles as images to a local folder.
+version=0.2
 author=Cayetano Benavent
-email=cayetanobv@gmail.com
+email=cayetano.benavent@geographica.gs
 
 # End of mandatory metadata
 
