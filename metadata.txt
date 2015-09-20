@@ -1,7 +1,7 @@
-# This file contains metadata for your plugin. Since 
-# version 2.0 of QGIS this is the proper way to supply 
-# information about a plugin. The old method of 
-# embedding metadata in __init__.py will 
+# This file contains metadata for your plugin. Since
+# version 2.0 of QGIS this is the proper way to supply
+# information about a plugin. The old method of
+# embedding metadata in __init__.py will
 # is no longer supported since version 2.0.
 
 # This file should be included when you package your plugin.# Mandatory items:
@@ -20,6 +20,7 @@ email=cayetanobv@gmail.com
 
 # Uncomment the following line and add your changelog:
 changelog=0.1 First version
+changelog=0.2 Minor improvements
 
 # Tags are comma separated with spaces allowed
 tags=MBTiles, tiles, extract, images, jpg, png
@@ -29,8 +30,7 @@ tracker=https://github.com/cayetanobv/QGIS-Plugin-MBTiles2img/issues
 repository=https://github.com/cayetanobv/QGIS-Plugin-MBTiles2img
 icon=icon.png
 # experimental flag
-experimental=True
+experimental=False
 
 # deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
-
