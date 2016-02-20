@@ -258,23 +258,18 @@ class MBTiles2img:
         try:
             ex_mbt = MBTilesExtractor(input_file, dirname=dest_folder, overwrite=True)
             self.dlg.progressBar.setValue(10)
-            result = ex_mbt.extractTiles()
+            ex_mbt.extractTiles()
             msg_type= "Info"
             level = QgsMessageBar.INFO
             progress_value  = 100
 
-            if 'Done!' not in result:
-                msg_type= "Warning"
-                level = QgsMessageBar.WARNING
-                progress_value = 0
-                res = 0
-            else:
-                res = 1
+            outfolder = os.path.join(dest_folder,os.path.basename(input_file).split('.')[0])
+            result = 'Tile extraction done! Output folder: {}'.format(outfolder)
 
             self.iface.messageBar().pushMessage(msg_type, result, level=level, duration=10)
             self.dlg.progressBar.setValue(progress_value)
 
-            return res
+            return 1
 
         except Exception as e:
             result = 'Error: {0} - {1}'.format(e.message, e.args)
@@ -295,6 +290,6 @@ class MBTiles2img:
 
             3) Push button "Run tile extraction".
 
-            Developed by Cayetano Benavent 2014-2015.
+            Developed by Cayetano Benavent 2014-2016.
 
             """)

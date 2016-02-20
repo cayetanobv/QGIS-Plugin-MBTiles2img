@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mbtiles2img_dialog_base.ui'
 #
-# Created: Thu Dec 25 23:43:20 2014
+# Created: Sat Feb 20 00:35:46 2016
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -29,13 +29,13 @@ class Ui_MBTiles2imgDialogBase(object):
         MBTiles2imgDialogBase.resize(310, 330)
         MBTiles2imgDialogBase.setMinimumSize(QtCore.QSize(310, 330))
         MBTiles2imgDialogBase.setMaximumSize(QtCore.QSize(310, 330))
-        self.widget = QtGui.QWidget(MBTiles2imgDialogBase)
-        self.widget.setGeometry(QtCore.QRect(10, 200, 291, 121))
-        self.widget.setObjectName(_fromUtf8("widget"))
-        self.verticalLayout_2 = QtGui.QVBoxLayout(self.widget)
+        self.layoutWidget = QtGui.QWidget(MBTiles2imgDialogBase)
+        self.layoutWidget.setGeometry(QtCore.QRect(10, 200, 291, 121))
+        self.layoutWidget.setObjectName(_fromUtf8("layoutWidget"))
+        self.verticalLayout_2 = QtGui.QVBoxLayout(self.layoutWidget)
         self.verticalLayout_2.setMargin(0)
         self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
-        self.runExtractionButton = QtGui.QPushButton(self.widget)
+        self.runExtractionButton = QtGui.QPushButton(self.layoutWidget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -45,20 +45,20 @@ class Ui_MBTiles2imgDialogBase(object):
         self.runExtractionButton.setMaximumSize(QtCore.QSize(16777215, 50))
         self.runExtractionButton.setObjectName(_fromUtf8("runExtractionButton"))
         self.verticalLayout_2.addWidget(self.runExtractionButton)
-        self.progressBar = QtGui.QProgressBar(self.widget)
+        self.progressBar = QtGui.QProgressBar(self.layoutWidget)
         self.progressBar.setProperty("value", 0)
         self.progressBar.setObjectName(_fromUtf8("progressBar"))
         self.verticalLayout_2.addWidget(self.progressBar)
-        self.helpButton = QtGui.QPushButton(self.widget)
+        self.helpButton = QtGui.QPushButton(self.layoutWidget)
         self.helpButton.setObjectName(_fromUtf8("helpButton"))
         self.verticalLayout_2.addWidget(self.helpButton)
-        self.widget1 = QtGui.QWidget(MBTiles2imgDialogBase)
-        self.widget1.setGeometry(QtCore.QRect(10, 10, 291, 161))
-        self.widget1.setObjectName(_fromUtf8("widget1"))
-        self.gridLayout = QtGui.QGridLayout(self.widget1)
+        self.layoutWidget1 = QtGui.QWidget(MBTiles2imgDialogBase)
+        self.layoutWidget1.setGeometry(QtCore.QRect(10, 10, 291, 161))
+        self.layoutWidget1.setObjectName(_fromUtf8("layoutWidget1"))
+        self.gridLayout = QtGui.QGridLayout(self.layoutWidget1)
         self.gridLayout.setMargin(0)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.splitter = QtGui.QSplitter(self.widget1)
+        self.splitter = QtGui.QSplitter(self.layoutWidget1)
         self.splitter.setOrientation(QtCore.Qt.Vertical)
         self.splitter.setObjectName(_fromUtf8("splitter"))
         self.loadFileButton = QtGui.QPushButton(self.splitter)
@@ -74,7 +74,7 @@ class Ui_MBTiles2imgDialogBase(object):
         self.labelPathMBTiles.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByKeyboard|QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextBrowserInteraction|QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
         self.labelPathMBTiles.setObjectName(_fromUtf8("labelPathMBTiles"))
         self.gridLayout.addWidget(self.splitter, 0, 0, 1, 1)
-        self.splitter_2 = QtGui.QSplitter(self.widget1)
+        self.splitter_2 = QtGui.QSplitter(self.layoutWidget1)
         self.splitter_2.setOrientation(QtCore.Qt.Vertical)
         self.splitter_2.setObjectName(_fromUtf8("splitter_2"))
         self.selectDestFolderButton = QtGui.QPushButton(self.splitter_2)
@@ -101,5 +101,5 @@ class Ui_MBTiles2imgDialogBase(object):
         self.loadFileButton.setText(_translate("MBTiles2imgDialogBase", "Load MBTiles file", None))
         self.labelPathMBTiles.setText(_translate("MBTiles2imgDialogBase", "MBTiles to extract...", None))
         self.selectDestFolderButton.setText(_translate("MBTiles2imgDialogBase", "Select folder to save images", None))
-        self.labelPathDestFolder.setText(_translate("MBTiles2imgDialogBase", "Destination folder...", None))
+        self.labelPathDestFolder.setText(_translate("MBTiles2imgDialogBase", "Set destination folder...", None))
 
