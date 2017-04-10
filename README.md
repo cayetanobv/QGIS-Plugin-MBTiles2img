@@ -27,8 +27,10 @@ You must add MBTilesextractor library as a Git submodule:
 $ git submodule add https://github.com/cayetanobv/MBTilesextractor_lib.git
 ```
 
+To use the Plugin from this repository you must run ```preparesubmoduleforplugin.sh``` script.
+
 ##About author
-Developed by Cayetano Benavent (2014).
+Developed by Cayetano Benavent (2014-2017).
 GIS Analyst at Geographica.
 
 http://www.geographica.gs
