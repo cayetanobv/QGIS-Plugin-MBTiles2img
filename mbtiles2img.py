@@ -35,7 +35,7 @@ from mbtiles2img_dialog import MBTiles2imgDialog
 
 # Other imports
 import os.path
-from MBTilesextractor_lib.lib.mbtilesextractor import MBTilesExtractor
+from mbtilesextractor import MBTilesExtractor
 
 
 class MBTiles2img:
