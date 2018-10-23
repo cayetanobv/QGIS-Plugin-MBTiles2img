@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """
 /***************************************************************************
  MBTiles2imgDialog
                                  A QGIS plugin
- This plugin takes an mbtiles file and split it apart into a folder hierarchy 
+ This plugin takes an mbtiles file and split it apart into a folder hierarchy
  of individual image tile files.
                              -------------------
         begin                : 2014-12-09
@@ -23,33 +22,34 @@
 
 import os
 
-from PyQt4 import QtGui, uic
+from PyQt5 import uic, QtWidgets
+
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'mbtiles2img_dialog_base.ui'))
 
 
-class MBTiles2imgDialog(QtGui.QDialog, FORM_CLASS):
+class MBTiles2imgDialog(QtWidgets.QDialog, FORM_CLASS):
     def __init__(self, parent=None):
         """Constructor."""
         super(MBTiles2imgDialog, self).__init__(parent)
 
         self.setupUi(self)
-    
+
     def setLabelPathMBTiles(self, output):
         self.labelPathMBTiles.setText(output)
-    
+
     def setLabelPathDestFolder(self, output):
         self.labelPathDestFolder.setText(output)
-    
+
     def getPathMBTiles(self):
         return self.labelPathMBTiles.text()
-    
+
     def getPathDestFolder(self):
         return self.labelPathDestFolder.text()
-    
+
     def clearLabelPathMBTiles(self):
         self.labelPathMBTiles.clear()
-    
+
     def clearLabelPathDestFolder(self):
         self.labelPathDestFolder.clear()

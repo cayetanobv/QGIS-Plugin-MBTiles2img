@@ -1,17 +1,9 @@
-# This file contains metadata for your plugin. Since
-# version 2.0 of QGIS this is the proper way to supply
-# information about a plugin. The old method of
-# embedding metadata in __init__.py will
-# is no longer supported since version 2.0.
-
-# This file should be included when you package your plugin.# Mandatory items:
-
 [general]
 name=MBTiles images extract
-qgisMinimumVersion=2.0
+qgisMinimumVersion=3.0
 description=With this QGIS plugin you can take an MBTiles file and extract all the tiles as images to a local folder. This plugin can be very useful for debugging processes.
 about=With this QGIS plugin you can take an MBTiles file and extract all the tiles as images to a local folder.
-version=0.3.1
+version=0.4
 author=Cayetano Benavent
 email=cayetano.benavent@geographica.gs
 
@@ -24,6 +16,7 @@ changelog=0.1 First version
           0.2 Minor improvements
           0.3 Added PBF support
           0.3.1 Fixed metadata bug and submodule improvements
+          0.4 QGIS 3 version
 
 # Tags are comma separated with spaces allowed
 tags=MBTiles, tiles, extract, images, jpg, png, pbf
