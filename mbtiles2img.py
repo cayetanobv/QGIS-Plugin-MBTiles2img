@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 /***************************************************************************
  MBTiles2img
@@ -22,20 +21,15 @@ This plugin takes an mbtiles file and split it apart into a folder hierarchy
  *                                                                         *
  ***************************************************************************/
 """
-# Import the PyQt and QGIS libraries
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
-from qgis.gui import *
-
-# Initialize Qt resources from file resources.py
-import resources_rc
-
-# Import the code for the dialog
-from mbtiles2img_dialog import MBTiles2imgDialog
-
-# Other imports
 import os.path
-from mbtilesextractor import MBTilesExtractor
+
+from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
+from PyQt5.QtWidgets import QAction, QFileDialog, QMessageBox
+from PyQt5.QtGui import QIcon
+from qgis.core import Qgis
+from MBTiles2img import resources_rc
+from MBTiles2img.mbtilesextractor import MBTilesExtractor
+from MBTiles2img.mbtiles2img_dialog import MBTiles2imgDialog
 
 
 class MBTiles2img:
@@ -176,11 +170,11 @@ class MBTiles2img:
             callback=self.run,
             parent=self.iface.mainWindow())
 
-        # Connecting actions and functions (signals and slots)
-        QObject.connect(self.dlg.loadFileButton, SIGNAL("clicked()"), self.loadMBTilesFile)
-        QObject.connect(self.dlg.selectDestFolderButton, SIGNAL("clicked()"), self.setDestFolder)
-        QObject.connect(self.dlg.runExtractionButton, SIGNAL("clicked()"), self.runTileExtraction)
-        QObject.connect(self.dlg.helpButton, SIGNAL("clicked()"), self.getHelp)
+        self.dlg.loadFileButton.clicked.connect(self.loadMBTilesFile)
+        self.dlg.selectDestFolderButton.clicked.connect(self.setDestFolder)
+        self.dlg.runExtractionButton.clicked.connect(self.runTileExtraction)
+        self.dlg.helpButton.clicked.connect(self.getHelp)
+
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
@@ -220,7 +214,7 @@ class MBTiles2img:
         # open file dialog to load MBTiles file
         start_dir = '/home'
         fl_types = "MBTiles files (*.mbtiles)"
-        file_path = QFileDialog.getOpenFileName(self.iface.mainWindow(),
+        file_path, _ = QFileDialog.getOpenFileName(self.iface.mainWindow(),
                                                 'Open MBTiles file',
                                                 start_dir, fl_types)
 
@@ -260,7 +254,7 @@ class MBTiles2img:
             self.dlg.progressBar.setValue(10)
             ex_mbt.extractTiles()
             msg_type= "Info"
-            level = QgsMessageBar.INFO
+            level = Qgis.Info
             progress_value  = 100
 
             outfolder = os.path.join(dest_folder,os.path.basename(input_file).split('.')[0])
@@ -273,7 +267,7 @@ class MBTiles2img:
 
         except Exception as e:
             result = 'Error: {0} - {1}'.format(e.message, e.args)
-            self.iface.messageBar().pushMessage("Error", result, level=QgsMessageBar.CRITICAL, duration=10)
+            self.iface.messageBar().pushMessage("Error", result, level=Qgis.Critical, duration=10)
             self.dlg.progressBar.setValue(0)
 
     def getHelp(self):
