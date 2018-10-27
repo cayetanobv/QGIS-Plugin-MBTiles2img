@@ -265,8 +265,8 @@ class MBTiles2img:
 
             return 1
 
-        except Exception as e:
-            result = 'Error: {0} - {1}'.format(e.message, e.args)
+        except Exception as err:
+            result = 'Error: {0}'.format(err)
             self.iface.messageBar().pushMessage("Error", result, level=Qgis.Critical, duration=10)
             self.dlg.progressBar.setValue(0)
 
