@@ -284,6 +284,6 @@ class MBTiles2img:
 
             3) Push button "Run tile extraction".
 
-            Developed by Cayetano Benavent 2014-2016.
+            Developed by Cayetano Benavent 2014-2018.
 
             """)
