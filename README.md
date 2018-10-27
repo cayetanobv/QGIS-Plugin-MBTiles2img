@@ -15,7 +15,7 @@ Compliant with MBTiles stable specification (1.1) and previous (1.0):
 https://github.com/mapbox/mbtiles-spec
 
 ## Requirements
-QGIS 2.0 or later.
+QGIS 3.0 or later. For use this plugin with QGIS 2.x you need to use version 0.3.1.
 
 This project uses MBTilesextractor library to do the work:
 
@@ -27,10 +27,24 @@ You must add MBTilesextractor library as a Git submodule:
 $ git submodule add https://github.com/cayetanobv/MBTilesextractor_lib.git
 ```
 
-To use the Plugin from this repository you must run ```preparesubmoduleforplugin.sh``` script.
+or you can clone repository with recursive flag.
+
+## Building plugin
+
+To use the Plugin from this repository you must run ```scripts/build_plugin.sh``` script:
+
+```
+$ cd scripts
+$ chmod +x build_plugin.sh
+$ ./build_plugin.sh
+```
+To copy to QGIS plugin folder use in this way:
+```
+$ DEBUG=1 ./build_plugin.sh
+```
 
 ## About author
-Developed by Cayetano Benavent (2014-2017).
+Developed by Cayetano Benavent (2014-2018).
 GIS Analyst at Geographica.
 
 http://www.geographica.gs
